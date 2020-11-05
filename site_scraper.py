@@ -23,11 +23,14 @@ def getPage(page):
 	names = re.findall('\<tr class="ewTableRow"\>(.+?)\</tr\>',sites)
 	ret = []
 	for x in names:
-		a = []
-		a.append(re.findall('\<a href="(.+?)"\>',x)[0]) #Specific Code
-		a.append(re.findall('target="_blank"\>(.+?)\</a>',x)[0]) #URL
-		a.append(re.findall('\</a\>&nbsp\;\</td\>\<td\>(.+?)&nbsp\;\</td\>',x)[0]) #Site Name
-		a.append(re.findall('\)\;"\>(.+?)&nbsp\;\</td\>',x)[0]) #Status
+		a = {}
+		try:
+			a["code"]=(re.findall('\<a href="(.+?)"\>',x)[0]) #Specific Code
+			a["url"]=(re.findall('target="_blank"\>(.+?)\</a>',x)[0]) #URL
+			a["siteName"]=(re.findall('\</a\>&nbsp\;\</td\>\<td\>(.+?)&nbsp\;\</td\>',x)[0]) #Site Name
+			a["status"]=(re.findall('\)\;"\>(.+?)&nbsp\;\</td\>',x)[0]) #Status
+		except:
+			pass
 		ret.append(a)
 	return ret
 # for x in names:
@@ -35,5 +38,6 @@ def getPage(page):
 l = []
 for x in range(1,145155,20):
 	l.extend(getPage(str(x)))
+# print(l)
 with open("file.pkl","wb") as f:
 	pkl.dump(l,f)
