@@ -13,7 +13,7 @@ ISPs have access to
 ISPs do not have access to the site content the customer is visiting in case of Https sites. Whereas content of Http sites can be easily accessed. Old fishing websites can be detected using a query search, for e.g. Site with a form asking for Credit Card Details can be easily matched with query searches/regex thus preventing the user from accesssing the data of the site.
 
 ## Microsoft Scams
-Most of the microsoft scams make you scare 
+Most of the microsoft scams are you sharing your screen and giving input access to scammers.
 1) As the ISPs have track of softwares we download, as most of the scams first let you download a screen sharing software e.g. TeamViewer then move on to ZohoAssist, etc. when they have access.
 2) With the above point, we can trigger an ML detection on the sites they recently visited, thus getting the fraud URL.
 3) As the ISP has access to the IPs where the client/customer is sending and retrieving data. We can track the scammer, if its location seems near to some identified scams, we can trigger the scam. 
