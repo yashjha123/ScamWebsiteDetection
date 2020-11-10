@@ -41,3 +41,6 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 9) .com or .net etc.
 10) Again similar URL with different domains like microsoft.com and microsofti.in 
 
+## Useful Links
+1) [Words from a URL](https://stackoverflow.com/questions/8870261/how-to-split-text-without-spaces-into-list-of-words)
+2) [Useful repo](https://github.com/shramos/Awesome-Cybersecurity-Datasets)
