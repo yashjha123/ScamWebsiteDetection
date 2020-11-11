@@ -36,9 +36,9 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 - [ ] Converting text Eg. hell0 to hello
 - [x] Maximum possible words
 - [ ] Statistics of a website (Number of people who have visited it.)
-- [ ] Whoislookup
+- [x] Whoislookup
 - [ ] Distance between repeated letters book is 2 and letter is o
-- [ ] Letter Embeddings Eg. Jijhaj is 101231
+- [ ] Letter Embeddings Eg. Jijhaj is 101231 (Using ASCII here)
 - [ ] .com or .net etc.
 - [ ] ~~Again similar URL with different domains like microsoft.com and microsofti.in~~
 - [ ] Adding a split on . and / for subdomains, .com or .net ... and subpages
