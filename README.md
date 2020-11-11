@@ -30,17 +30,19 @@ Once the ISP has detected whether the site that user has visited is fraud or not
 ## Detection from URL
 AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To do this, we have another model; in this case, the Random Forest Algorithm to indicate the frauds from a list of sites. Here is the list of input features of the algorithm.
 
-1) Relatable to few known sites
-2) Some word for, e.g. Banks, Lons...
-3) Repeated Characters
-4) Converting text Eg. hell0 to hello
-5) Maximum possible words
-6) Statistics of a website (Number of people who have visited it.)
-7) Distance between repeated letters book is 2 and letter is o
-8) Letter Embeddings Eg. Jijhaj is 101231
-9) .com or .net etc.
-10) Again similar URL with different domains like microsoft.com and microsofti.in 
-
+- [x] Relatable to few known sites 
+- [x] Some word for, e.g. Banks, Lons...
+- [ ] ~~Repeated Characters~~
+- [ ] Converting text Eg. hell0 to hello
+- [x] Maximum possible words
+- [ ] Statistics of a website (Number of people who have visited it.)
+- [ ] Whoislookup
+- [ ] Distance between repeated letters book is 2 and letter is o
+- [ ] Letter Embeddings Eg. Jijhaj is 101231
+- [ ] .com or .net etc.
+- [ ] ~~Again similar URL with different domains like microsoft.com and microsofti.in~~
+- [ ] Adding a split on . and / for subdomains, .com or .net ... and subpages
+- [ ] Text Preprocessing Normalizing, Stemming and Lemmatization.
 
 1) Using URL_to_words to convert the URL into words for classifier encoding
 2) Using the dp code to get deletions, additions, etc. For eg. Microsoftonline and Microsoft
@@ -53,3 +55,6 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 1) [Words from a URL](https://stackoverflow.com/questions/8870261/how-to-split-text-without-spaces-into-list-of-words)
 2) [Useful repo](https://github.com/shramos/Awesome-Cybersecurity-Datasets)
 3) [Reading .mat file](https://stackoverflow.com/questions/874461/read-mat-files-in-python)
+4) [List of sites](https://lifars.com/wp-content/uploads/2016/11/Sites-with-blocklist-of-malicious-IPs-and-URLs.pdf)
+5) Minimum Edit Distance with Paths [stackoverflow](https://stackoverflow.com/questions/10638597/minimum-edit-distance-reconstruction) [python package](https://pypi.org/project/python-Levenshtein/)
+6) Text Preprocessing [Medium Article](https://towardsdatascience.com/a-handbook-to-text-preprocessing-890f73fd28f8)
