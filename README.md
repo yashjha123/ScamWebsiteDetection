@@ -51,6 +51,12 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 1) Using URL_to_words to convert the URL into words for classifier encoding
 2) Using the dp code to get deletions, additions, etc. For eg. Microsoftonline and Microsoft
 
+## TODO List
+- [ ] Getting the Top-50 list with Alexa for MED
+- [ ] Getting the dataset (Phishing List)
+- [ ] Comibining the snippets together
+- [ ] Converting to input features of Random Forest Classifier
+
 ## Datasets
 1) [Phishing site links, OpenPhish](https://openphish.com/feed.txt)
 2) [Phishing site links, PhishTank](https://www.phishtank.com/developer_info.php)
