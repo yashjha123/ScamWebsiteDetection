@@ -41,6 +41,15 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 9) .com or .net etc.
 10) Again similar URL with different domains like microsoft.com and microsofti.in 
 
+
+1) Using URL_to_words to convert the URL into words for classifier encoding
+2) Using the dp code to get deletions, additions, etc. For eg. Microsoftonline and Microsoft
+
+## Datasets
+1) [Phishing site links, OpenPhish](https://openphish.com/feed.txt)
+2) [Phishing site links, PhishTank](https://www.phishtank.com/developer_info.php)
+
 ## Useful Links
 1) [Words from a URL](https://stackoverflow.com/questions/8870261/how-to-split-text-without-spaces-into-list-of-words)
 2) [Useful repo](https://github.com/shramos/Awesome-Cybersecurity-Datasets)
+3) [Reading .mat file](https://stackoverflow.com/questions/874461/read-mat-files-in-python)
