@@ -32,17 +32,21 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 
 - [x] Relatable to few known sites 
 - [x] Some word for, e.g. Banks, Lons...
-- [ ] ~~Repeated Characters~~
-- [ ] Converting text Eg. hell0 to hello
 - [x] Maximum possible words
-- [ ] Statistics of a website (Number of people who have visited it.)
 - [x] Whoislookup
+- [x] Letter Embeddings Eg. Jijhaj is 101231 (Using ASCII here)
+- [x] .com or .net etc. (tld-counts)
+- [x] Adding a split on . and / for subdomains, .com or .net ... and subpages. (last .com for domain extension)
+- [x] http or https and www or www3
+- [x] Text Preprocessing Normalizing, Stemming and Lemmatization.
+
+
 - [ ] Distance between repeated letters book is 2 and letter is o
-- [ ] Letter Embeddings Eg. Jijhaj is 101231 (Using ASCII here)
-- [ ] .com or .net etc.
+- [ ] Converting text Eg. hell0 to hello
+- [ ] Statistics of a website (Number of people who have visited it.) (Alexa API but expensive)
+
 - [ ] ~~Again similar URL with different domains like microsoft.com and microsofti.in~~
-- [ ] Adding a split on . and / for subdomains, .com or .net ... and subpages
-- [ ] Text Preprocessing Normalizing, Stemming and Lemmatization.
+- [ ] ~~Repeated Characters~~
 
 1) Using URL_to_words to convert the URL into words for classifier encoding
 2) Using the dp code to get deletions, additions, etc. For eg. Microsoftonline and Microsoft
