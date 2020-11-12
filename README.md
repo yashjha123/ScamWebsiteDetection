@@ -52,6 +52,18 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 1) Using URL_to_words to convert the URL into words for classifier encoding
 2) Using the dp code to get deletions, additions, etc. For eg. Microsoftonline and Microsoft
 
+## Input Feature Details
+Feature Name | Size | Type 
+--- | --- | --- 
+Edit Distance List | 10000 | Array
+whois | 3 | OneHotEncoder
+Text to ASCII | 67(max) | Array
+TLD Count | 1 | Number
+http or https, www or www3 | 2 | 2 Numbers
+NLP on url words | 1000(max) | OneHotEncoder
+Count the no. of digit | 1 | 1 Number
+NLP on Subpages | 1000(max) | OneHotEncoder
+
 ## TODO List
 - [x] Getting the Top-50 list with Alexa for MED
 - [x] Augmentation (Remove Numbers along with specific characters)
