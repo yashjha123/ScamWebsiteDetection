@@ -1,4 +1,4 @@
-### Scam Website Detection
+# Scam Website Detection
 
 Categorizing the website, whether it is a scam or not. There may be algorithms detecting whether the website is a fraud. In this case, we are using ISP side detection to detect whether the site is fake or not.
 
@@ -32,20 +32,21 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 
 - [x] Relatable to few known sites 
 - [x] Some word for, e.g. Banks, Lons...
-- [x] Maximum possible words
+- [x] Maximum possible words (breaking a URL into words)
 - [x] Whoislookup
 - [x] Letter Embeddings Eg. Jijhaj is 101231 (Using ASCII here)
 - [x] .com or .net etc. (tld-counts)
 - [x] Adding a split on . and / for subdomains, .com or .net ... and subpages. (last .com for domain extension)
 - [x] http or https and www or www3
 - [x] Text Preprocessing Normalizing, Stemming and Lemmatization.
-
+- [x] Digits of numbers in the Dataset
+- [ ] Keyboard Typos Eg. biik instead of book
 
 - [ ] Distance between repeated letters book is 2 and letter is o
 - [ ] Converting text Eg. hell0 to hello
 - [ ] Statistics of a website (Number of people who have visited it.) (Alexa API but expensive)
 
-- [ ] ~~Again similar URL with different domains like microsoft.com and microsofti.in~~
+- [ ] ~~Again similar URL wit different domains like microsoft.com and microsofti.in~~
 - [ ] ~~Repeated Characters~~
 
 1) Using URL_to_words to convert the URL into words for classifier encoding
@@ -53,16 +54,21 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 
 ## TODO List
 - [x] Getting the Top-50 list with Alexa for MED
-- [ ] Getting the dataset (Phishing List)
+- [] Augmentation (Remove Numbers along with specific characters)
+- [x] Getting the dataset (Phishing List)
 - [ ] Comibining the snippets together
 - [ ] Converting to input features of Random Forest Classifier
 
 ## Datasets
-1) [Phishing site links, OpenPhish](https://openphish.com/feed.txt)
-2) [Phishing site links, PhishTank](https://www.phishtank.com/developer_info.php)
-3) [Alex Top List](https://gist.github.com/chilts/7229605) [Download List as .zip](http://s3.amazonaws.com/alexa-static/top-1m.csv.zip)
+1) [Phishing site links, OpenPhish](https://openphish.com/feed.txt) 4305 sites
+2) [Phishing site links, PhishTank](https://www.phishtank.com/developer_info.php) 14505 sites
+3) [Phishing site links, CYBERCRiME](http://cybercrime-tracker.net/) 22470 sites
+4) [Alex Top List](https://gist.github.com/chilts/7229605) [Download List as .zip](http://s3.amazonaws.com/alexa-static/top-1m.csv.zip)
+5) [Using Majestic Million for non-phishing sites](http://cybercrime-tracker.net/)
+6) [Rest of the Dataset, StopForumSpam](https://www.stopforumspam.com/downloads) 1000000 (unreliable, best not used)
 
 ## Useful Links
+
 1) [Words from a URL](https://stackoverflow.com/questions/8870261/how-to-split-text-without-spaces-into-list-of-words)
 2) [Useful repo](https://github.com/shramos/Awesome-Cybersecurity-Datasets)
 3) [Reading .mat file](https://stackoverflow.com/questions/874461/read-mat-files-in-python)
