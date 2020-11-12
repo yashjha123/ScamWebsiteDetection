@@ -52,7 +52,7 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 2) Using the dp code to get deletions, additions, etc. For eg. Microsoftonline and Microsoft
 
 ## TODO List
-- [ ] Getting the Top-50 list with Alexa for MED
+- [x] Getting the Top-50 list with Alexa for MED
 - [ ] Getting the dataset (Phishing List)
 - [ ] Comibining the snippets together
 - [ ] Converting to input features of Random Forest Classifier
@@ -60,6 +60,7 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 ## Datasets
 1) [Phishing site links, OpenPhish](https://openphish.com/feed.txt)
 2) [Phishing site links, PhishTank](https://www.phishtank.com/developer_info.php)
+3) [Alex Top List](https://gist.github.com/chilts/7229605) [Download List as .zip](http://s3.amazonaws.com/alexa-static/top-1m.csv.zip)
 
 ## Useful Links
 1) [Words from a URL](https://stackoverflow.com/questions/8870261/how-to-split-text-without-spaces-into-list-of-words)
