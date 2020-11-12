@@ -207,32 +207,70 @@ def countDigits(url):
 	url_extinct = url_ext.subdomain+url_ext.domain
 	# print(url_extinct)
 	return len(re.findall("[0-9]", url_extinct))
-
+ohe = {}
+ohe["whois"] = OneHotEncoder()
+ohe["uNLP"] = OneHotEncoder()
+ohe["sNLP"] = OneHotEncoder()
+cun = {}
+cun["whoisa"]={}
+cun["whoisnameserver"]={}
+cun["uNLP"]={}
+cun["sNLP"]={}
+i = 0
 for url in url_list:
 	url,http,www = urlsimpler(url,returnMetadata=True)
 	# Edit Distance List
-	print((edit_distance_list(url)))
+	# print((edit_distance_list(url)))
 	
-	print(minx[0])
+	# print(minx[0])
 	# url to words then to NLP so donot count this	
 	words = (url_to_words(url))
-	print(words)
 	# whois
 	try:
-		print(whoIs(url))
+		whoises = (whoIs(url))
+		try:
+			cun["whoisa"][whoises[0]]+=1
+		except:
+			cun["whoisa"][whoises[0]]=1
+		try:
+			cun["whoisnameserver"][whoises[1]]+=1
+		except:
+			cun["whoisnameserver"][whoises[1]]=1
+		try:
+			cun["whoisnameserver"][whoises[2]]+=1
+		except:
+			cun["whoisnameserver"][whoises[2]]=1
 	except whois.exceptions.UnknownTld:
-		print("Doesnot Exists")
+		pass
 	# Text to ASCII
-	print(encoding(url))
+	# print(encoding(url))
 	# TLD Counts
-	print(getTLDindex(url))
+	# print(getTLDindex(url))
 	#http or https, www or www3
-	print(http,www)
+	# print(http,www)
 	#NLP
 	url_sentence = (" ".join(words))
-	print(nlpized(url_sentence))
+	url_sentence = (nlpized(url_sentence))
+	for word in url_sentence:
+		try:
+			cun["uNLP"][word]+=1
+		except:
+			cun["uNLP"][word]=1
 	#Count the no. of digits
-	print(countDigits(url))
+	# print(countDigits(url))
 	# Subpages
 	o = urlparse(url)
-	print([nlpized(x) for x in o.path.split("/")])
+	wordz = ([x for x in nlpized(" ".join(o.path.split("/")))])
+	for word in wordz:
+		if not word:
+			continue
+		# print(word)
+		try:
+			cun["sNLP"][word]+=1
+		except:
+			cun["sNLP"][word]=1
+	i+=1
+	if(i%100==99):
+		print(i)
+	with open("cun.pkl","wb") as f:
+		pkl.dump(cun, f)
