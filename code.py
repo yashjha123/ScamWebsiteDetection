@@ -35,10 +35,20 @@ Input Features Scheme
 
 with open("./Dataset/feed.txt","r") as f:
 	url_list = f.read().split()
+verified_online = pd.read_csv("D:/Python/verified_online.csv")
+verfied_online_urls = verified_online.loc[:,"url"].values
 with open("./Snippets/counts.pkl","rb") as f:
 	tld_data = pkl.load(f)
 dataset = pd.read_csv("C:/Users/ComputerGuy/Downloads/Compressed/top-1m.csv/top-1m.csv")
 website = (dataset.loc[:,["website"]].values)
+def readCybercrimes():
+	urls = []
+	with open("D:/Python/CYBERCRiME-11-12-20.txt","rb") as f:
+		g = f.readlines()
+	for h in g:
+		urls.append(h.decode("utf-8").replace("\n",""))
+	return urls
+url_list.extend(readCybercrimes())
 # url_list = ["whitetms.com/loader/"]
 ## to get google.com domain+suffix
 def infer_spaces(s):
@@ -217,6 +227,11 @@ cun["whoisnameserver"]={}
 cun["uNLP"]={}
 cun["sNLP"]={}
 i = 0
+# print(len(url_list),len(verfied_online_urls))
+url_list.extend(verfied_online_urls)
+print(len(url_list))
+# url_list = url_list+verfied_online_urls
+# quit()
 for url in url_list:
 	url,http,www = urlsimpler(url,returnMetadata=True)
 	# Edit Distance List
@@ -274,3 +289,5 @@ for url in url_list:
 		print(i)
 	with open("cun.pkl","wb") as f:
 		pkl.dump(cun, f)
+with open("cunFinal.pkl","wb") as f:
+	pkl.dump(cun, f)
