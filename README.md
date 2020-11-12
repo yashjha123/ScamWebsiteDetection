@@ -39,9 +39,9 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 - [x] Adding a split on . and / for subdomains, .com or .net ... and subpages. (last .com for domain extension)
 - [x] http or https and www or www3
 - [x] Text Preprocessing Normalizing, Stemming and Lemmatization.
-- [x] Digits of numbers in the Dataset
+- [x] Number of digits in a URL
 - [ ] Keyboard Typos Eg. biik instead of book
-
+<br \>
 - [ ] Distance between repeated letters book is 2 and letter is o
 - [ ] Converting text Eg. hell0 to hello
 - [ ] Statistics of a website (Number of people who have visited it.) (Alexa API but expensive)
@@ -54,7 +54,7 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 
 ## TODO List
 - [x] Getting the Top-50 list with Alexa for MED
-- [] Augmentation (Remove Numbers along with specific characters)
+- [x] Augmentation (Remove Numbers along with specific characters)
 - [x] Getting the dataset (Phishing List)
 - [ ] Comibining the snippets together
 - [ ] Converting to input features of Random Forest Classifier
@@ -73,5 +73,5 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 2) [Useful repo](https://github.com/shramos/Awesome-Cybersecurity-Datasets)
 3) [Reading .mat file](https://stackoverflow.com/questions/874461/read-mat-files-in-python)
 4) [List of sites](https://lifars.com/wp-content/uploads/2016/11/Sites-with-blocklist-of-malicious-IPs-and-URLs.pdf)
-5) Minimum Edit Distance with Paths [stackoverflow](https://stackoverflow.com/questions/10638597/minimum-edit-distance-reconstruction) [python package](https://pypi.org/project/python-Levenshtein/)
+5) Minimum Edit Distance with Paths [stackoverflow](https://stackoverflow.com/questions/10638597/minimum-edit-distance-reconstruction) [python package](https://pypi.org/project/python-Levenshtein/) [wheels](https://pypi.org/project/python-Levenshtein-wheels/)
 6) Text Preprocessing [Medium Article](https://towardsdatascience.com/a-handbook-to-text-preprocessing-890f73fd28f8)
