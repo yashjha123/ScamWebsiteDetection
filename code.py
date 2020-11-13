@@ -11,6 +11,7 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 from sklearn.preprocessing import OneHotEncoder
+import numpy as np
 lemmatizer = WordNetLemmatizer()
 stemmer = PorterStemmer()
 stopwords = (set(stopwords.words('english')))
@@ -177,6 +178,8 @@ def whoIs(url):
 def encoding(url):
 	u = getGoogleFormat(url)
 	out = [ord(x) for x in u]
+	padding = [0 for x in range(253-len(out))]
+	out.extend(padding)
 	return out
 def getIndex(extension):
 	global tld_data
@@ -217,21 +220,26 @@ def countDigits(url):
 	url_extinct = url_ext.subdomain+url_ext.domain
 	# print(url_extinct)
 	return len(re.findall("[0-9]", url_extinct))
+def readPKL(file):
+	with open(file,"rb") as f:
+		ret = pkl.load(f)
+	return ret
 ohe = {}
-ohe["whois"] = OneHotEncoder()
-ohe["uNLP"] = OneHotEncoder()
-ohe["sNLP"] = OneHotEncoder()
+ohe["whoisa"] = readPKL("registrar.pkl")
+ohe["whoisnameserver"] = readPKL("nameservers.pkl")
+ohe["uNLP"] = readPKL("uNLP.pkl")
+ohe["sNLP"] = readPKL("sNLP.pkl")
 cun = {}
-cun["whoisa"]={}
-cun["whoisnameserver"]={}
-cun["uNLP"]={}
-cun["sNLP"]={}
+# cun["whoisa"]={}
+# cun["whoisnameserver"]={}
+# cun["uNLP"]={}# cun["sNLP"]={}
 i = 0
 # print(len(url_list),len(verfied_online_urls))
 url_list.extend(verfied_online_urls)
 print(len(url_list))
 # url_list = url_list+verfied_online_urls
 # quit()
+all_data = []
 for url in url_list:
 	url,http,www = urlsimpler(url,returnMetadata=True)
 	# Edit Distance List
@@ -241,53 +249,92 @@ for url in url_list:
 	# url to words then to NLP so donot count this	
 	words = (url_to_words(url))
 	# whois
+
 	try:
 		whoises = (whoIs(url))
-		try:
-			cun["whoisa"][whoises[0]]+=1
-		except:
-			cun["whoisa"][whoises[0]]=1
-		try:
-			cun["whoisnameserver"][whoises[1]]+=1
-		except:
-			cun["whoisnameserver"][whoises[1]]=1
-		try:
-			cun["whoisnameserver"][whoises[2]]+=1
-		except:
-			cun["whoisnameserver"][whoises[2]]=1
+		whoisa_arr = ohe["whoisa"].transform([[whoises[0]]]).toarray()
+		whoisnameserver_arr = ohe["whoisnameserver"].transform([[whoises[1]]]).toarray()
+		whoisnameserver_arr+= ohe["whoisnameserver"].transform([[whoises[2]]]).toarray()
+		# try:
+		# 	cun["whoisa"][whoises[0]]+=1
+		# except:
+		# 	cun["whoisa"][whoises[0]]=1
+		# try:
+		# 	cun["whoisnameserver"][whoises[1]]+=1
+		# except:
+		# 	cun["whoisnameserver"][whoises[1]]=1
+		# try:
+		# 	cun["whoisnameserver"][whoises[2]]+=1
+		# except:
+		# 	cun["whoisnameserver"][whoises[2]]=1
 	except whois.exceptions.UnknownTld:
 		pass
+	whoisa_arr= whoisa_arr.tolist()
+	whoisnameserver_arr = whoisnameserver_arr.tolist()
 	# Text to ASCII
 	# print(encoding(url))
+	enc = (encoding(url))
+	enc_array = (enc)
 	# TLD Counts
-	# print(getTLDindex(url))
+	tldIndex = [(getTLDindex(url))]
 	#http or https, www or www3
 	# print(http,www)
+	hw = [http,www]
 	#NLP
 	url_sentence = (" ".join(words))
 	url_sentence = (nlpized(url_sentence))
+	uNLP_array = "0"
 	for word in url_sentence:
+		uNLP_word = np.array(ohe["uNLP"].transform([[word]]).toarray())
 		try:
-			cun["uNLP"][word]+=1
+			uNLP_array+=uNLP_word
 		except:
-			cun["uNLP"][word]=1
+			uNLP_array = uNLP_word
+		# try:
+		# 	cun["uNLP"][word]+=1
+		# except:
+		# 	cun["uNLP"][word]=1
+	uNLP_array = uNLP_array.tolist()
 	#Count the no. of digits
-	# print(countDigits(url))
+	countDigits = [(countDigits(url))]
 	# Subpages
 	o = urlparse(url)
 	wordz = ([x for x in nlpized(" ".join(o.path.split("/")))])
+	sNLP_array = "0"
 	for word in wordz:
 		if not word:
 			continue
-		# print(word)
+		sNLP_word = np.array(ohe["uNLP"].transform([[word]]).toarray())
 		try:
-			cun["sNLP"][word]+=1
+			sNLP_array+=sNLP_word 
 		except:
-			cun["sNLP"][word]=1
+			sNLP_array = sNLP_word
+		# print(word)
+		# try:
+		# 	cun["sNLP"][word]+=1
+		# except:
+		# 	cun["sNLP"][word]=1
+	sNLP_array = sNLP_array.tolist()
+	features = whoisa_arr[0]
+	features.extend(whoisnameserver_arr[0])
+	features.extend(enc_array)
+	features.extend(tldIndex)
+	features.extend(hw)
+	features.extend(uNLP_array[0])
+	features.extend(sNLP_array[0])
+	# print(features)
+	# print(whoisnameserver_arr[0])
+	# print(enc_array)
+	# print(tldIndex)
+	# print(hw)
+	# print(uNLP_array[0])
+	# print(sNLP_array[0])
+	all_data.append(features)
+	# break
 	i+=1
 	if(i%100==99):
 		print(i)
-	with open("cun.pkl","wb") as f:
-		pkl.dump(cun, f)
-with open("cunFinal.pkl","wb") as f:
-	pkl.dump(cun, f)
+		with open("features.pkl","wb") as f:
+			pkl.dump(all_data, f)
+with open("featuresFinal.pkl","wb") as f:
+	pkl.dump(all_data, f)

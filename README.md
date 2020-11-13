@@ -57,7 +57,7 @@ Feature Name | Size | Type | Threshold
 --- | --- | --- | --- 
 Edit Distance List | 10000 | Array | -
 whois | 3 | OneHotEncoder | 
-Text to ASCII | 67(max) | Array | -
+Text to ASCII | 253(max) | Array | -
 TLD Count | 1 | Number | -
 http or https, www or www3 | 2 | 2 Numbers | -
 NLP on url words(uNLP) | 1000(max) | OneHotEncoder | 22
