@@ -9,7 +9,7 @@ ISPs have access to
 4) Your Mac Addresses
 5) Softwares you download (From the software website, may not be clear in case of using big hosting services)
 
-## Http Sites
+## HTTP Sites
 ISPs do not have access to the site content the customer is visiting in case of Https sites. In contrast, the content of Http sites can be easily accessed. Old fishing websites can be detected using a query search, e.g. Site with a form asking for Credit Card Details can be easily matched with query searches/regex thus preventing the user from accessing the data of the site.
 
 ## Microsoft Scams
@@ -53,17 +53,16 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 2) Using the dp code to get deletions, additions, etc. For eg. Microsoftonline and Microsoft
 
 ## Input Feature Details
-Feature Name | Size | Type 
---- | --- | --- 
-Edit Distance List | 10000 | Array
-whois | 3 | OneHotEncoder
-Text to ASCII | 67(max) | Array
-TLD Count | 1 | Number
-http or https, www or www3 | 2 | 2 Numbers
-NLP on url words | 1000(max) | OneHotEncoder
-Count the no. of digit | 1 | 1 Number
-NLP on Subpages | 1000(max) | OneHotEncoder
-
+Feature Name | Size | Type | Threshold
+--- | --- | --- | --- 
+Edit Distance List | 10000 | Array | -
+whois | 3 | OneHotEncoder | 
+Text to ASCII | 67(max) | Array | -
+TLD Count | 1 | Number | -
+http or https, www or www3 | 2 | 2 Numbers | -
+NLP on url words(uNLP) | 1000(max) | OneHotEncoder | 22
+Count the no. of digit | 1 | 1 Number | -
+NLP on Subpages(sNLP) | 1000(max) | OneHotEncoder | 7
 ## TODO List
 - [x] Getting the Top-50 list with Alexa for MED
 - [x] Augmentation (Remove Numbers along with specific characters)
