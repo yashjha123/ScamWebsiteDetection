@@ -4,8 +4,10 @@ import pickle as pkl
 from sklearn.preprocessing import OneHotEncoder
 with open("cunFinal.pkl","rb") as f:
 	cun = pkl.load(f)
-whois = (cun["whoisa"])
-
+whois = (cun["whoisnameserver"])
+print(whois)
+# exit()
+693
 def getOHE(lab,limit,file):
 	# print(whois)
 	l = []
@@ -25,7 +27,8 @@ def getOHE(lab,limit,file):
 		# bars.append(x[0])
 		if x[1]>limit:
 			bars.append([x[0]])
-		# print(x)
+		print(x)
+	return
 	print(len(bars),len(l))
 	# return
 	whoisa = OneHotEncoder(handle_unknown="ignore")
@@ -35,10 +38,10 @@ def getOHE(lab,limit,file):
 	with open(file,"wb") as f:
 		pkl.dump(whoisa, f)
 
-getOHE((cun["whoisa"]), 5, "registrar.pkl")
+# getOHE((cun["whoisa"]), 5, "registrar.pkl")
 getOHE((cun["whoisnameserver"]), 5, "nameservers.pkl")
-getOHE((cun["uNLP"]), 23, "uNLP.pkl")
-getOHE((cun["sNLP"]), 7, "sNLP.pkl")
+# getOHE((cun["uNLP"]), 23, "uNLP.pkl")
+# getOHE((cun["sNLP"]), 7, "sNLP.pkl")
 # getOHE((cun["whoisa"]), 5, "registrar.pkl")
 # print(len(bars))
 # print(bars)

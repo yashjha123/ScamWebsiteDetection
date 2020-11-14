@@ -12,28 +12,14 @@ from nltk.stem.porter import PorterStemmer
 from nltk.stem import WordNetLemmatizer
 from sklearn.preprocessing import OneHotEncoder
 import numpy as np
+from sklearn.feature_extraction import FeatureHasher
+hasher = FeatureHasher(n_features=5)
 lemmatizer = WordNetLemmatizer()
 stemmer = PorterStemmer()
 stopwords = (set(stopwords.words('english')))
-
 words = open("Snippets/words-by-frequency.txt").read().split()
 wordcost = dict((k, log((i+1)*log(len(words)))) for i,k in enumerate(words))
 maxword = max(len(x) for x in words)
-"""
-Input Features Scheme
-1) ED Sub domain + Domain cs.ml		5000
-2) ED Subpage /admin/index.html		5000
-3) Encoding sub pages 				100(expected) or 0
-4) URL to Words 					200 words max
-5) whoIs 							100 words max
-6) Encoding							67 words max
-7) tldCount							1
-8) HTTP and WWW 					2
-9) NLP Preprocessing				10
-10) No. of digits 					1
-11) NLP in Subpages 				100(expected)
-"""
-
 with open("./feed.txt","r") as f:
 	url_list = f.read().split()
 verified_online = pd.read_csv("./verified_online.csv")
@@ -50,12 +36,9 @@ def readCybercrimes():
 		urls.append(h.decode("utf-8").replace("\n",""))
 	return urls
 url_list.extend(readCybercrimes())
-# url_list = ["whitetms.com/loader/"]
-## to get google.com domain+suffix
 def infer_spaces(s):
 	def best_match(i):
-		candidates = enumerate(reversed(cost[max(0, i-maxword):i]))
-		
+		candidates = enumerate(reversed(cost[max(0, i-maxword):i]))		
 		return min((c + wordcost.get(s[i-k-1:i], 9e999), k+1) for k,c in candidates)
 	cost = [0]
 	for i in range(1,len(s)+1):
@@ -109,13 +92,10 @@ def urlsimpler(url,returnMetadata=False):
 	if(returnMetadata==True):
 		return (starter+url),http,www
 	return starter+url
-def edit_distance_list(url,topN=10000):
+def edit_distance_list(url,topN=300):
 	o = urlparse(url)
 	ext = (tldextract.extract(o.netloc))
-	# print(ext)
-	# continue
 	url_ext = ext.subdomain+(ext.domain)
-	print(url_ext,end=" ")
 	
 	features = []
 	global minx
@@ -123,15 +103,11 @@ def edit_distance_list(url,topN=10000):
 	mina = 99999999
 	minx = 0
 	for x in website[:topN]:
-		# print(x[0])
-		# print(url_ext,".".join(x[0].split(".")[:-1]))
 		comp = urlsimpler(x[0])
 		compo = urlparse(comp)
 		comp_ext = (tldextract.extract(compo.netloc))
 		comp_domain = comp_ext.domain
-		# print(comp_domain)
 		ed = Levenshtein.editops(url_ext,comp_domain)
-		# print(ed)
 		insert = 0
 		replace = 0
 		delete = 0
@@ -142,12 +118,11 @@ def edit_distance_list(url,topN=10000):
 				replace+=1
 			if(g[0]=="delete"):
 				delete+=1
-		# print(insert*2,replace*5,delete)
 		weight = insert+replace+delete
 		if(weight<mina):
 			mina = weight
 			minx = x
-		features.append([insert,replace,delete])
+		features.extend([insert,replace,delete])
 	return features
 def url_to_words(url):
 	o = urlparse(url)
@@ -166,12 +141,10 @@ def whoIs(url):
 	o = urlparse(url)
 	url_ext = ((tldextract.extract(o.netloc)))
 	url_extinct = url_ext.domain+"."+url_ext.suffix
-	# url_extinct = "google.com"
 	try:
 		domain = whois.query(url_extinct)
 	except UnicodeDecodeError:
 		return ["null","null","null"]
-	# print(url_extinct)
 	
 	if(domain!=None):
 		domain = domain.__dict__
@@ -192,11 +165,10 @@ def getIndex(extension):
 	try:
 		return (tld_data[extension])
 	except KeyError:
-		return "N/A"
+		return 0
 def getTLDindex(url):
 	o = urlparse(url)
 	url_ext = ((tldextract.extract(o.netloc)))
-	# url_extinct = url_ext.domain+"."+url_ext.suffix
 	return getIndex("."+url_ext.suffix)
 def nlpized(text):
 	no_special_char=[]
@@ -224,136 +196,75 @@ def countDigits(url):
 	o = urlparse(url)
 	url_ext = ((tldextract.extract(o.netloc)))
 	url_extinct = url_ext.subdomain+url_ext.domain
-	# print(url_extinct)
 	return len(re.findall("[0-9]", url_extinct))
 def readPKL(file):
 	with open(file,"rb") as f:
 		ret = pkl.load(f)
 	return ret
-ohe = {}
-ohe["whoisa"] = readPKL("registrar.pkl")
-ohe["whoisnameserver"] = readPKL("nameservers.pkl")
-ohe["uNLP"] = readPKL("uNLP.pkl")
-ohe["sNLP"] = readPKL("sNLP.pkl")
-cun = {}
-# cun["whoisa"]={}
-# cun["whoisnameserver"]={}
-# cun["uNLP"]={}# cun["sNLP"]={}
+def getFromDict(dic,val):
+	try:
+		ret = dic[val]
+	except KeyError:
+		return 0
+	return ret
+cun = readPKL("cunFinal.pkl")
 i = 0
-# print(len(url_list),len(verfied_online_urls))
 url_list.extend(verfied_online_urls)
 print(len(url_list))
-# url_list = url_list+verfied_online_urls
-# quit()
 all_data = []
 for url in url_list:
 	url,http,www = urlsimpler(url,returnMetadata=True)
-	# Edit Distance List
-	# print((edit_distance_list(url)))
-	
-	# print(minx[0])
-	# url to words then to NLP so donot count this	
+	edl = ((edit_distance_list(url)))
 	words = (url_to_words(url))
-	# whois
 	whoisa_arr = None
 	whoisnameserver_arr = None
+	whoisa_dict = {}
+	whoisnameserver_dict = {}
 	try:
 		whoises = (whoIs(url))
-		whoisa_arr = ohe["whoisa"].transform([[whoises[0]]]).toarray()
-		whoisnameserver_arr = ohe["whoisnameserver"].transform([[whoises[1]]]).toarray()
-		whoisnameserver_arr+= ohe["whoisnameserver"].transform([[whoises[2]]]).toarray()
-		# try:
-		# 	cun["whoisa"][whoises[0]]+=1
-		# except:
-		# 	cun["whoisa"][whoises[0]]=1
-		# try:
-		# 	cun["whoisnameserver"][whoises[1]]+=1
-		# except:
-		# 	cun["whoisnameserver"][whoises[1]]=1
-		# try:
-		# 	cun["whoisnameserver"][whoises[2]]+=1
-		# except:
-		# 	cun["whoisnameserver"][whoises[2]]=1
+		whoisa_dict[whoises[0]] = getFromDict(cun["whoisa"],whoises[0])/693
+		whoisnameserver_dict[whoises[1]] = getFromDict(cun["whoisnameserver"],whoises[1])/191
+		whoisnameserver_dict[whoises[2]] = getFromDict(cun["whoisnameserver"],whoises[2])/191
 	except whois.exceptions.UnknownTld:
 		pass
-	if(type(whoisa_arr)==np.ndarray):
-		whoisnameserver_arr = whoisnameserver_arr.tolist()
-		whoisa_arr= whoisa_arr.tolist()
-	else:
-		whoisa_arr = ohe["whoisa"].transform([["Wqeasdsadsadsadfewf"]]).toarray()
-		whoisa_arr= whoisa_arr.tolist()
-		whoisnameserver_arr = ohe["whoisnameserver"].transform([["Wqeasdsadsadsadfewf"]]).toarray()
-		whoisnameserver_arr+= ohe["whoisnameserver"].transform([["Wqeasdsadsadsadfewf"]]).toarray()
-		whoisnameserver_arr = whoisnameserver_arr.tolist()
-	# Text to ASCII
-	# print(encoding(url))
+	
+	whoisa_arr = hasher.transform([whoisa_dict]).toarray()
+	whoisa_arr = whoisa_arr.tolist()
+	whoisnameserver_arr = hasher.transform([whoisnameserver_dict]).toarray()
+	whoisnameserver_arr = whoisnameserver_arr.tolist()
 	enc = (encoding(url))
 	enc_array = (enc)
-	# TLD Counts
 	tldIndex = [(getTLDindex(url))]
-	#http or https, www or www3
-	# print(http,www)
 	hw = [http,www]
-	#NLP
 	url_sentence = (" ".join(words))
 	url_sentence = (nlpized(url_sentence))
 	uNLP_array = None
+	uNLP_dict = {}
 	for word in url_sentence:
-		uNLP_word = np.array(ohe["uNLP"].transform([[word]]).toarray())
-		try:
-			uNLP_array+=uNLP_word
-		except:
-			uNLP_array = uNLP_word
-		# try:
-		# 	cun["uNLP"][word]+=1
-		# except:
-		# 	cun["uNLP"][word]=1
-	# uNLP_array = uNLP_array.tolist()
-	if(type(uNLP_array)==np.ndarray):
-		uNLP_array = uNLP_array.tolist()
-	else:
-		uNLP_array = np.array(ohe["uNLP"].transform([["ve8wf89ewny98edsmijnsdiasdynhas8d"]]).toarray()).tolist()
-	#Count the no. of digits
+		uNLP_dict[word] = getFromDict(cun["uNLP"],word)
+	uNLP_array = hasher.transform([uNLP_dict]).toarray()
+	uNLP_array = uNLP_array.tolist()
 	countDigit = [(countDigits(url))]
-	# Subpages
 	o = urlparse(url)
 	wordz = ([x for x in nlpized(" ".join(o.path.split("/")))])
 	sNLP_array = None
+	sNLP_dict = {}
 	for word in wordz:
 		if not word:
 			continue
-		sNLP_word = np.array(ohe["sNLP"].transform([[word]]).toarray())
-		try:
-			sNLP_array+=sNLP_word 
-		except:
-			sNLP_array = sNLP_word
-		# print(word)
-		# try:
-		# 	cun["sNLP"][word]+=1
-		# except:
-		# 	cun["sNLP"][word]=1
-	# print(type(sNLP_array))
-	if(type(sNLP_array)==np.ndarray):
-		sNLP_array = sNLP_array.tolist()
-	else:
-		sNLP_array = np.array(ohe["sNLP"].transform([["ve8wf89ewny98edsmijnsdiasdynhas8d"]]).toarray()).tolist()
-	features = whoisa_arr[0]
-	features.extend(whoisnameserver_arr[0])
-	features.extend(enc_array)
-	features.extend(tldIndex)
-	features.extend(hw)
-	features.extend(uNLP_array[0])
-	features.extend(sNLP_array[0])
-	features.extend(countDigit)
-	# print(features)
-	# print(whoisnameserver_arr[0])
-	# print(enc_array)
-	# print(tldIndex)
-	# print(hw)
-	# print(uNLP_array[0])
-	# print(sNLP_array[0])
+		sNLP_dict[word] = getFromDict(cun["sNLP"],word)
+	sNLP_array = hasher.transform([sNLP_dict]).toarray()
+	sNLP_array = sNLP_array.tolist()
+	features = whoisa_arr[0] #hashed
+	features.extend(edl) #simple array
+	features.extend(whoisnameserver_arr[0]) #hashed
+	features.extend(enc_array) #256
+	features.extend(tldIndex) #1
+	features.extend(hw) #2
+	features.extend(uNLP_array[0]) #hashed
+	features.extend(sNLP_array[0]) #hashed
+	features.extend(countDigit) #hase
 	all_data.append(features)
-	# break
 	i+=1
 	if(i%100==99):
 		print(i)
