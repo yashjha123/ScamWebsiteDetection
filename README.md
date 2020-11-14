@@ -67,7 +67,7 @@ NLP on Subpages(sNLP) | 1000(max) | OneHotEncoder | 7
 - [x] Getting the Top-50 list with Alexa for MED
 - [x] Augmentation (Remove Numbers along with specific characters)
 - [x] Getting the dataset (Phishing List)
-- [ ] Comibining the snippets together
+- [x] Comibining the snippets together
 - [ ] Converting to input features of Random Forest Classifier
 
 ## Datasets
@@ -86,3 +86,4 @@ NLP on Subpages(sNLP) | 1000(max) | OneHotEncoder | 7
 4) [List of sites](https://lifars.com/wp-content/uploads/2016/11/Sites-with-blocklist-of-malicious-IPs-and-URLs.pdf)
 5) Minimum Edit Distance with Paths [stackoverflow](https://stackoverflow.com/questions/10638597/minimum-edit-distance-reconstruction) [python package](https://pypi.org/project/python-Levenshtein/) [wheels](https://pypi.org/project/python-Levenshtein-wheels/)
 6) Text Preprocessing [Medium Article](https://towardsdatascience.com/a-handbook-to-text-preprocessing-890f73fd28f8)
+7) [Python | Word Embedding using Word2Vec](https://www.geeksforgeeks.org/python-word-embedding-using-word2vec/)
