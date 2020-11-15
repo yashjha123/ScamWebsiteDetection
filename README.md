@@ -1,5 +1,15 @@
 # Scam Website Detection
 
+In 2019 phishing accounted for 90% of overall data breaches. Several firms are hard struck by it......
+
+Novel algorithms to stop phishing searches is through reporting a particular site and updating a list, the government may ask ISPs to redirect to a different page. Chrome also warns the users when they try to reach a website from the list.
+
+However there are ML models to detect frauds websites, they cannot be used in consumer's markey. Implementation through Browser extension, AntiVirus Systems and FireWalls have undoubtebly lowered the rate but the numbers still remains high.
+
+One good solution to this problem is making a ... between ISP connections to the consumer. The... will automatically predict the phishing site from the data in the traffic and redirect the load. Most feasible way to implement this is on the ISP servers, a new problem arises here, ISP servers cannot handly high computational power and that too we only can get a few details from the traffic and not the content of HTTPS sites. 
+Our algorithm can easily predict the phishing sites from the traffic by only the domain names. Since phishing domains are mostly typos, relatable to the few keyboards; my classifier predicts on such data. Corellation and Typos domains can be detected by using the Least Edit Distance Algorihtm, we also used TLD Domain extension count, converted the url (joined sentence) into words for NLP classification and several other metadata of the site is put through a Random Forest Classifical model to achieve higher accuracy. 
+The algorithm can predict the sites in realtime and with very low latency, thus no harm to the consumers' speed.
+
 Categorizing the website, whether it is a scam or not. There may be algorithms detecting whether the website is a fraud. In this case, we are using ISP side detection to detect whether the site is fake or not.
 
 ISPs have access to
@@ -19,6 +29,7 @@ Most of the Microsoft scams are you sharing your screen and giving input access 
 3) As the ISP has access to the IPs where the client/customer is sending and retrieving data. We can track the scammer; if its location seems near to some identified scams, we can trigger the scam. 
 
 ## Banking Scams
+
 1) Banking scams are a high threat, as we have a track of the consumer's history, we can access the site content by requesting the URL separately. Accessing the URL every time may be difficult.
 2) Pattern matching in the domains.
 3) Tracing the history of a user which led him to a particular website can also be used.
@@ -28,6 +39,7 @@ Once the ISP has detected whether the site that user has visited is fraud or not
 
 
 ## Detection from URL
+
 AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To do this, we have another model; in this case, the Random Forest Algorithm to indicate the frauds from a list of sites. Here is the list of input features of the algorithm.
 
 - [x] Relatable to few known sites 
@@ -87,3 +99,4 @@ NLP on Subpages(sNLP) | 1000(max) | OneHotEncoder | 7
 5) Minimum Edit Distance with Paths [stackoverflow](https://stackoverflow.com/questions/10638597/minimum-edit-distance-reconstruction) [python package](https://pypi.org/project/python-Levenshtein/) [wheels](https://pypi.org/project/python-Levenshtein-wheels/)
 6) Text Preprocessing [Medium Article](https://towardsdatascience.com/a-handbook-to-text-preprocessing-890f73fd28f8)
 7) [Python | Word Embedding using Word2Vec](https://www.geeksforgeeks.org/python-word-embedding-using-word2vec/)
+8) [Changing IP addresses](https://console.cloud.google.com/networking/addresses/list?authuser=3&project=coherent-voice-288005)

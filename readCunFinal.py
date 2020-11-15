@@ -7,13 +7,13 @@ with open("cunFinal.pkl","rb") as f:
 whois = (cun["whoisnameserver"])
 print(whois)
 # exit()
-693
+# 693
 def getOHE(lab,limit,file):
 	# print(whois)
 	l = []
 	for x in lab:
 		a = (x,lab[x])
-		l.append(a)
+		l.append(a)	
 	def second(b):
 		return b[1]
 

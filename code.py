@@ -40,15 +40,15 @@ Input Features Scheme
 
 with open("./Dataset/feed.txt","r") as f:
 	url_list = f.read().split()
-verified_online = pd.read_csv("D:/Python/verified_online.csv")
+verified_online = pd.read_csv("data/verified_online.csv")
 verfied_online_urls = verified_online.loc[:,"url"].values
 with open("./Snippets/counts.pkl","rb") as f:
 	tld_data = pkl.load(f)
-dataset = pd.read_csv("C:/Users/ComputerGuy/Downloads/Compressed/top-1m.csv/top-1m.csv")
+dataset = pd.read_csv("data/top-1m.csv")
 website = (dataset.loc[:,["website"]].values)
 def readCybercrimes():
 	urls = []
-	with open("D:/Python/CYBERCRiME-11-12-20.txt","rb") as f:
+	with open("data/CYBERCRiME-11-12-20.txt","rb") as f:
 		g = f.readlines()
 	for h in g:
 		urls.append(h.decode("utf-8").replace("\n",""))
@@ -245,7 +245,7 @@ def getFromDict(dic,val):
 # ohe["whoisnameserver"] = readPKL("nameservers.pkl")
 # ohe["uNLP"] = readPKL("uNLP.pkl")
 # ohe["sNLP"] = readPKL("sNLP.pkl")
-cun = readPKL("cunFinal.pkl")
+cun = readPKL("data/cunFinal.pkl")
 # print(cun["uNLP"]["hello"])
 # print(getFromDict(cun["uNLP"],"hello"))
 # uNLP_dict["hello"]=cun["uNLP"]
