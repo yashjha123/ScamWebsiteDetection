@@ -1,15 +1,12 @@
 # Scam Website Detection
 
 In 2019 phishing accounted for 90% of overall data breaches. Several firms are hard struck by it......
+Millions of firms are affected by phishing each year. Security breaches are increasing at rate of 11% each year. And one-third of such breaches involves breaching. It will difficult to continue if this pace continues. Detecting phishing sites prior to their action is a great step. Novel algorithms to stop phishing searches is through reporting a particular site and creating a list, the government may ask ISPs to redirect to a different page. 
+In exclusion ot the role of ISPs Chrome also warns the users when they try to connect to a site listed in their database. Such methods have no doubt slowed the pace but thhey see
+However there are ML models to detect frauds websites, they cannot be used in consumer's market. Implementation through Browser extension, AntiVirus Systems and Fire-Walls have undoubtebly lowered the rate but the numbers still remains high. One solution to this problem is creating a detector at the user. The detector will automatically predict the phishing site from the data in the traffic and redirect the load. The usage of the detector slowlely matters on the knowldge of the user and has problems on deployment on a large scale. Most feasible way to implement this is on the ISP servers, another problem arises here, ISP servers cannot handly high computational power and that too they only can access a few details from the traffic and not the whole content of request and response packets. Our algorithm can easily predict the phishing sites from the traffic by only the domain names, which ISPs have access to. Since phishing domains are mostly typos, relatable to the few words; fraudlent; my classifier predicts accuractely on such data. Corellation and Typos domains can be detected by using the Least Edit Distance Algorihtm, top-level domain rank, text form conversion of the url (joined sentence) into words for NLP classification and metadata(whois data) of the site is put through a Random Forest Classifical model to achieve higher accuracy. 
 
-Novel algorithms to stop phishing searches is through reporting a particular site and updating a list, the government may ask ISPs to redirect to a different page. Chrome also warns the users when they try to reach a website from the list.
-
-However there are ML models to detect frauds websites, they cannot be used in consumer's markey. Implementation through Browser extension, AntiVirus Systems and FireWalls have undoubtebly lowered the rate but the numbers still remains high.
-
-One good solution to this problem is making a ... between ISP connections to the consumer. The... will automatically predict the phishing site from the data in the traffic and redirect the load. Most feasible way to implement this is on the ISP servers, a new problem arises here, ISP servers cannot handly high computational power and that too we only can get a few details from the traffic and not the content of HTTPS sites. 
-Our algorithm can easily predict the phishing sites from the traffic by only the domain names. Since phishing domains are mostly typos, relatable to the few keyboards; my classifier predicts on such data. Corellation and Typos domains can be detected by using the Least Edit Distance Algorihtm, we also used TLD Domain extension count, converted the url (joined sentence) into words for NLP classification and several other metadata of the site is put through a Random Forest Classifical model to achieve higher accuracy. 
-The algorithm can predict the sites in realtime and with very low latency, thus no harm to the consumers' speed.
-
+The algorithm enables realtime prediction of phishing sites with very low latency. 
+ 
 Categorizing the website, whether it is a scam or not. There may be algorithms detecting whether the website is a fraud. In this case, we are using ISP side detection to detect whether the site is fake or not.
 
 ISPs have access to
@@ -52,11 +49,11 @@ AI cannot be used everywhere, so it won't be easy to do it on an ISP server. To 
 - [x] http or https and www or www3
 - [x] Text Preprocessing Normalizing, Stemming and Lemmatization.
 - [x] Number of digits in a URL
-- [ ] Keyboard Typos Eg. biik instead of book
+- [x] Keyboard Typos Eg. biik instead of book
 <br \>
-- [ ] Distance between repeated letters book is 2 and letter is o
-- [ ] Converting text Eg. hell0 to hello
-- [ ] Statistics of a website (Number of people who have visited it.) (Alexa API but expensive)
+- [x] Distance between repeated letters book is 2 and letter is o
+- [x] Converting text Eg. hell0 to hello
+- [x] Statistics of a website (Number of people who have visited it.) (Alexa API but expensive)
 
 - [ ] ~~Again similar URL wit different domains like microsoft.com and microsofti.in~~
 - [ ] ~~Repeated Characters~~
@@ -80,7 +77,12 @@ NLP on Subpages(sNLP) | 1000(max) | OneHotEncoder | 7
 - [x] Augmentation (Remove Numbers along with specific characters)
 - [x] Getting the dataset (Phishing List)
 - [x] Comibining the snippets together
-- [ ] Converting to input features of Random Forest Classifier
+- [x] Converting to input features of Random Forest Classifier
+
+## Results
+Accuracy:- 93.3% on 1million without Text preprocessing
+Accuracy:- 97.4% on 1million with ....
+Loss: No Loss lol, ML mein loss nahin hota bhai
 
 ## Datasets
 1) [Phishing site links, OpenPhish](https://openphish.com/feed.txt) 4305 sites
