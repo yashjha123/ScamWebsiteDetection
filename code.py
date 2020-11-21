@@ -13,6 +13,7 @@ from nltk.stem import WordNetLemmatizer
 from sklearn.preprocessing import OneHotEncoder
 import numpy as np
 from sklearn.feature_extraction import FeatureHasher
+import time
 hasher = FeatureHasher(n_features=5)
 
 
@@ -38,8 +39,8 @@ Input Features Scheme
 11) NLP in Subpages 				100(expected)
 """
 
-with open("./Dataset/feed.txt","r") as f:
-	url_list = f.read().split()
+# with open("./Dataset/feed.txt","r") as f:
+#	url_list = f.read().split()
 verified_online = pd.read_csv("data/verified_online.csv")
 verfied_online_urls = verified_online.loc[:,"url"].values
 with open("./Snippets/counts.pkl","rb") as f:
@@ -53,7 +54,7 @@ def readCybercrimes():
 	for h in g:
 		urls.append(h.decode("utf-8").replace("\n",""))
 	return urls
-url_list.extend(readCybercrimes())
+# url_list.extend(readCybercrimes())
 # url_list = ["whitetms.com/loader/"]
 ## to get google.com domain+suffix
 def infer_spaces(s):
@@ -240,12 +241,12 @@ def getFromDict(dic,val):
 	except KeyError:
 		return 0
 	return ret
+cun = readPKL("data/cunFinal.pkl")
 # ohe = {}
 # ohe["whoisa"] = readPKL("registrar.pkl")
 # ohe["whoisnameserver"] = readPKL("nameservers.pkl")
 # ohe["uNLP"] = readPKL("uNLP.pkl")
 # ohe["sNLP"] = readPKL("sNLP.pkl")
-cun = readPKL("data/cunFinal.pkl")
 # print(cun["uNLP"]["hello"])
 # print(getFromDict(cun["uNLP"],"hello"))
 # uNLP_dict["hello"]=cun["uNLP"]
@@ -255,12 +256,18 @@ cun = readPKL("data/cunFinal.pkl")
 # cun["uNLP"]={}# cun["sNLP"]={}
 i = 0
 # print(len(url_list),len(verfied_online_urls))
-url_list.extend(verfied_online_urls)
+# url_list.extend(verfied_online_urls)
+with open("non-malicous/thursday.txt","r") as f:
+	url_list=(f.read().split())
+# quit()
 print(len(url_list))
+# quit()
 # url_list = url_list+verfied_online_urls
 # quit()
 all_data = []
 for url in url_list:
+	# start = time.time()
+
 	url,http,www = urlsimpler(url,returnMetadata=True)
 	# Edit Distance List
 	edl = ((edit_distance_list(url)))
@@ -393,11 +400,15 @@ for url in url_list:
 	# print(features)
 	# continue
 	all_data.append(features)
+	# done = time.time()
+	# elapsed = done - start
+	# print(elapsed)
 	# break
 	i+=1
+	# print()
 	if(i%100==99):
 		print(i)
-		with open("features.pkl","wb") as f:
+		with open("featuresNonMal.pkl","wb") as f:
 			pkl.dump(all_data, f)
-with open("featuresFinal.pkl","wb") as f:
+with open("featuresNonMalFinal.pkl","wb") as f:
 	pkl.dump(all_data, f)
