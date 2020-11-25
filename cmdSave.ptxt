@@ -1,0 +1,393 @@
+Microsoft Windows [Version 10.0.18363.1198]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+D:\Python\ScamWebsiteDetection>
+D:\Python\ScamWebsiteDetection>
+D:\Python\ScamWebsiteDetection>python model.py
+(12397, 1177)
+
+D:\Python\ScamWebsiteDetection>python model.py
+38578 12397
+
+D:\Python\ScamWebsiteDetection>python model.py
+38578 12397
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library....
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+38578 12397
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library....
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 30975
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+Traceback (most recent call last):
+  File "model.py", line 22, in <module>
+    clf.fit(X_train, y_train)
+  File "C:\Python36\lib\site-packages\sklearn\ensemble\_forest.py", line 304, in fit
+    accept_sparse="csc", dtype=DTYPE)
+  File "C:\Python36\lib\site-packages\sklearn\base.py", line 432, in _validate_data
+    X, y = check_X_y(X, y, **check_params)
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 72, in inner_f
+    return f(**kwargs)
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 812, in check_X_y
+    check_consistent_length(X, y)
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 256, in check_consistent_length
+    " samples: %r" % [int(l) for l in lengths])
+ValueError: Found input variables with inconsistent numbers of samples: [20000, 57156]
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 57156
+Traceback (most recent call last):
+  File "model.py", line 23, in <module>
+    clf.fit(X_train, y_train)
+  File "C:\Python36\lib\site-packages\sklearn\ensemble\_forest.py", line 304, in fit
+    accept_sparse="csc", dtype=DTYPE)
+  File "C:\Python36\lib\site-packages\sklearn\base.py", line 432, in _validate_data
+    X, y = check_X_y(X, y, **check_params)
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 72, in inner_f
+    return f(**kwargs)
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 812, in check_X_y
+    check_consistent_length(X, y)
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 256, in check_consistent_length
+    " samples: %r" % [int(l) for l in lengths])
+ValueError: Found input variables with inconsistent numbers of samples: [20000, 57156]
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 2000
+Traceback (most recent call last):
+  File "model.py", line 23, in <module>
+    clf.fit(X_train, y_train)
+  File "C:\Python36\lib\site-packages\sklearn\ensemble\_forest.py", line 304, in fit
+    accept_sparse="csc", dtype=DTYPE)
+  File "C:\Python36\lib\site-packages\sklearn\base.py", line 432, in _validate_data
+    X, y = check_X_y(X, y, **check_params)
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 72, in inner_f
+    return f(**kwargs)
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 812, in check_X_y
+    check_consistent_length(X, y)
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 256, in check_consistent_length
+    " samples: %r" % [int(l) for l in lengths])
+ValueError: Found input variables with inconsistent numbers of samples: [20000, 2000]
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  0.87655
+Traceback (most recent call last):
+  File "model.py", line 25, in <module>
+    print("Test Score:- ",clf.score(X_test, y_test))
+  File "C:\Python36\lib\site-packages\sklearn\base.py", line 499, in score
+    return accuracy_score(y, self.predict(X), sample_weight=sample_weight)
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 72, in inner_f
+    return f(**kwargs)
+  File "C:\Python36\lib\site-packages\sklearn\metrics\_classification.py", line 187, in accuracy_score
+    y_type, y_true, y_pred = _check_targets(y_true, y_pred)
+  File "C:\Python36\lib\site-packages\sklearn\metrics\_classification.py", line 81, in _check_targets
+    check_consistent_length(y_true, y_pred)
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 256, in check_consistent_length
+    " samples: %r" % [int(l) for l in lengths])
+ValueError: Found input variables with inconsistent numbers of samples: [57156, 30975]
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  0.87655
+Test Score:-  0.7843099273607749
+20000 30975
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  0.98825
+Test Score:-  0.928684422921711
+20000 30975
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  0.9896
+Test Score:-  0.9399515738498789
+20000 30975
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  0.9896
+Test Score:-  0.9399515738498789
+20000 30975
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  0.9896
+Test Score:-  0.9399515738498789
+20000 30975
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  0.9896
+Test Score:-  0.9399515738498789
+20000 30975
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading Checkpoint...
+Loaded Checkpoint!
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading Checkpoint...
+Loaded Checkpoint!
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading Checkpoint...
+Loaded Checkpoint!
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading Checkpoint...
+Loaded Checkpoint!
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading Checkpoint...
+Loaded Checkpoint!
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading Checkpoint...
+Loaded Checkpoint!
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading Checkpoint...
+Loaded Checkpoint!
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading Checkpoint...
+Loaded Checkpoint!
+
+D:\Python\ScamWebsiteDetection>dor
+'dor' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\Python\ScamWebsiteDetection>dot
+'dot' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\Python\ScamWebsiteDetection>dot
+'dot' is not recognized as an internal or external command,
+operable program or batch file.
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading Checkpoint...
+Loaded Checkpoint!
+Traceback (most recent call last):
+  File "model.py", line 49, in <module>
+    export_graphviz(estimator, out_file='tree.dot',
+NameError: name 'estimator' is not defined
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading Checkpoint...
+Loaded Checkpoint!
+
+D:\Python\ScamWebsiteDetection>python model.py
+Traceback (most recent call last):
+  File "model.py", line 3, in <module>
+    from sklearn import tree
+  File "C:\Python36\lib\site-packages\sklearn\__init__.py", line 80, in <module>
+    from .base import clone
+  File "C:\Python36\lib\site-packages\sklearn\base.py", line 21, in <module>
+    from .utils import _IS_32BIT
+  File "C:\Python36\lib\site-packages\sklearn\utils\__init__.py", line 23, in <module>
+    from .class_weight import compute_class_weight, compute_sample_weight
+  File "C:\Python36\lib\site-packages\sklearn\utils\class_weight.py", line 7, in <module>
+    from .validation import _deprecate_positional_args
+  File "C:\Python36\lib\site-packages\sklearn\utils\validation.py", line 25, in <module>
+    from .fixes import _object_dtype_isnan, parse_version
+  File "C:\Python36\lib\site-packages\sklearn\utils\fixes.py", line 25, in <module>
+    from pkg_resources import parse_version  # type: ignore
+  File "C:\Python36\lib\site-packages\pkg_resources\__init__.py", line 3238, in <module>
+    @_call_aside
+  File "C:\Python36\lib\site-packages\pkg_resources\__init__.py", line 3222, in _call_aside
+    f(*args, **kwargs)
+  File "C:\Python36\lib\site-packages\pkg_resources\__init__.py", line 3251, in _initialize_master_working_set
+    working_set = WorkingSet._build_master()
+  File "C:\Python36\lib\site-packages\pkg_resources\__init__.py", line 558, in _build_master
+    ws = cls()
+  File "C:\Python36\lib\site-packages\pkg_resources\__init__.py", line 551, in __init__
+    self.add_entry(entry)
+  File "C:\Python36\lib\site-packages\pkg_resources\__init__.py", line 607, in add_entry
+    for dist in find_distributions(entry, True):
+  File "C:\Python36\lib\site-packages\pkg_resources\__init__.py", line 2056, in find_on_path
+    path_item_entries = _by_version_descending(filtered)
+  File "C:\Python36\lib\site-packages\pkg_resources\__init__.py", line 2026, in _by_version_descending
+    return sorted(names, key=_by_version, reverse=True)
+  File "C:\Python36\lib\site-packages\pkg_resources\__init__.py", line 2050, in <genexpr>
+    entry
+  File "C:\Python36\lib\site-packages\pkg_resources\__init__.py", line 2043, in <genexpr>
+    for child in safe_listdir(path_item)
+KeyboardInterrupt
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  0.99985
+Test Score:-  0.9707506053268765
+20000 30975
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  1.0
+Test Score:-  0.9696529459241323
+20000 30975
+
+D:\Python\ScamWebsiteDetection>.git
+
+D:\Python\ScamWebsiteDetection>
+
+D:\Python\ScamWebsiteDetection>
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  1.0
+Test Score:-  0.9683938660209847
+20000 30975
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  0.99985
+Test Score:-  0.9707506053268765
+20000 30975
+No. of estimators_ 100
+
+D:\Python\ScamWebsiteDetection>python model.py
+Loading sklearn Library...
+Loaded sklearn Library!
+Loading FeaturesNew...
+Loaded FeaturesNew!
+Loading featuresNonMalFinal...
+Loaded featuresNonMalFinal!
+Stacking two arrays(train)
+Stacking two arrays(test)
+20000 20000
+Training Score:-  0.9988
+Test Score:-  0.9601291364003228
+20000 30975
+No. of estimators_ 100
+
+D:\Python\ScamWebsiteDetection>
