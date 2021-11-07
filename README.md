@@ -82,7 +82,6 @@ NLP on Subpages(sNLP) | 1000(max) | OneHotEncoder | 7
 ## Results
 Accuracy:- 93.3% on 1million without Text preprocessing
 Accuracy:- 97.4% on 1million with ....
-Loss: No Loss lol, ML mein loss nahin hota bhai
 
 ## Datasets
 1) [Phishing site links, OpenPhish](https://openphish.com/feed.txt) 4305 sites
